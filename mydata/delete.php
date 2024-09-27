@@ -16,7 +16,7 @@ if (isset($_GET["id"])) {
     if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();
 
-        $filePath = 'upload_photo/' . $row['upload_photo'];
+        $filePath = $row['upload_photo'];
         if (file_exists($filePath)) {
             unlink($filePath);
         }
@@ -24,7 +24,6 @@ if (isset($_GET["id"])) {
     $sql = "DELETE FROM clients WHERE id = $id";
     $connection->query($sql);
     $data_path=$connection->query($sql);
-    echo "Data deleted Successfully";
     }
 }
 header("Location: /mydata/index.php");
